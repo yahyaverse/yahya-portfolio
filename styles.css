@@ -1,10 +1,11 @@
 :root {
-  --bg: #f5f3ee;
-  --text: #1b1b1b;
-  --muted: #5a5a5a;
-  --accent: #1d6b5f;
+  --bg: #fbfbfd;
+  --text: #2b2f38;
+  --muted: #6f7480;
+  --accent: #8b8bff;
+  --pill: #f1f2f6;
   --card: #ffffff;
-  --border: #e6e0d7;
+  --border: #ececf2;
   --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   --radius: 18px;
   --max: 1100px;
@@ -18,10 +19,20 @@
 
 body {
   margin: 0;
-  font-family: "PP Neue Montreal", "Suisse Int'l", "Space Grotesk", system-ui,
+  font-family: "Suisse Int'l", "PP Neue Montreal", "Space Grotesk", system-ui,
     -apple-system, sans-serif;
   color: var(--text);
-  background: radial-gradient(circle at top, #f9f6f1 0%, var(--bg) 55%);
+  background: radial-gradient(
+      900px 400px at 82% 0%,
+      rgba(179, 205, 255, 0.35),
+      rgba(255, 255, 255, 0)
+    ),
+    radial-gradient(
+      900px 420px at 0% 0%,
+      rgba(232, 202, 255, 0.3),
+      rgba(255, 255, 255, 0)
+    ),
+    var(--bg);
   line-height: 1.6;
 }
 
@@ -37,67 +48,92 @@ a:hover {
 .site-header {
   position: sticky;
   top: 0;
-  background: rgba(245, 243, 238, 0.8);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border);
+  background: transparent;
   z-index: 10;
 }
 
 .nav {
   max-width: var(--max);
   margin: 0 auto;
-  padding: 18px var(--gap);
+  padding: 28px var(--gap) 12px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: var(--gap);
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
 }
 
-.logo {
+.logo-mark {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  border: 1px solid #f2b2b2;
+  background: #fff5f5;
+  color: #e07a7a;
   font-weight: 600;
-  letter-spacing: 0.02em;
+  display: grid;
+  place-items: center;
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
 }
 
 .nav-links {
   display: flex;
-  gap: 20px;
+  gap: 14px;
   font-size: 0.95rem;
+}
+
+.nav-pill {
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.nav-pill.is-active,
+.nav-pill:hover {
+  background: var(--pill);
+  color: var(--text);
 }
 
 main {
   max-width: var(--max);
   margin: 0 auto;
-  padding: 64px var(--gap) 80px;
+  padding: 12px var(--gap) 80px;
 }
 
 .hero {
   display: grid;
-  gap: 18px;
-  padding: 40px 0 60px;
-}
-
-.eyebrow {
-  text-transform: uppercase;
-  letter-spacing: 0.25em;
-  font-size: 0.75rem;
-  color: var(--muted);
+  gap: 12px;
+  padding: 28px 0 50px;
 }
 
 .hero h1 {
-  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  font-size: clamp(2.1rem, 4vw, 3.2rem);
   line-height: 1.1;
   margin: 0;
+  font-weight: 600;
 }
 
 .lede {
-  max-width: 540px;
+  max-width: 640px;
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   color: var(--muted);
 }
 
-.hero-actions {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: #1cc38f;
+  box-shadow: 0 0 0 6px rgba(28, 195, 143, 0.15);
 }
 
 .button {
@@ -167,11 +203,7 @@ main {
 }
 
 @media (max-width: 720px) {
-  .nav-links {
-    display: none;
-  }
-
   .hero {
-    padding-top: 20px;
+    padding-top: 16px;
   }
 }
